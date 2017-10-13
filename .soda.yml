@@ -13,5 +13,5 @@ stages:
     - pwd
     - ls
     - plugin_unity3d -p iphone -r . -u /Applications/Unity/Unity.app/Contents/MacOS/Unity
-    - plugin_xcode --xCodePath /Applications/Xcode.app/ --iosPath result --iosName output.ipa --codeSignIdentity "iPhone Developer: junchi he (22AYX4B947)"  --provisioningProfile "2287a324-856c-4ccd-bb90-047baafbbe42" --provisionMethod  development
-    - plugin_fir --bundleId com.tencent.mimegame --file ./result/output.ipa --token a6f3a5b21463f68e4eae3af5e911b007 --type ios --name roll-a-ball --version 1.1.0 --build 1.0
+    - plugin_xcode --xCodePath /Applications/Xcode.app/ --iosPath result --iosName output.ipa --codeSignIdentity "#{sign.identity}"  --provisioningProfile "#{sign.profile}" --provisionMethod  development
+    - plugin_fir --bundleId com.tencent.mimegame --file ./result/output.ipa --token "#{fir.token}" --type ios --name roll-a-ball --version 1.1.0 --build 1.0
