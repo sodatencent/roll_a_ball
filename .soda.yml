@@ -12,6 +12,7 @@ stages:
     # 向构建主机安装SODA提供的企业签名证书
     - pwd
     - ls
-#    - plugin_unity3d -p iphone -r . -u /Applications/Unity/Unity.app/Contents/MacOS/Unity
-#    - plugin_xcode --xCodePath /Applications/Xcode.app/ --iosPath result --iosName output.ipa --codeSignIdentity "#{sign.identity}"  --provisioningProfile "#{sign.profile}" --provisionMethod  development
-#    - plugin_fir --bundleId com.tencent.mimegame --file ./result/output.ipa --token "#{fir.token}" --type ios --name roll-a-ball --version 1.1.0 --build 1.0
+    - rm -rf ./bin/
+    - plugin_unity3d_install -v 5.6.1f1 --username "#{unity.username}" --password "#{unity.password}"
+    - plugin_unity3d -p android -r . --apkPath bin --apkName roll_a_ball.apk
+    - plugin_fir --build 1.0 --bundleId com.tencent.ball --file bin/roll_a_ball.apk  --name roll_a_ball.apk --token "#{fir.token}" --type android --version 1.0
