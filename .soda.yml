@@ -80,6 +80,6 @@ stages:
     
     - plugin_xcode --iosName ball.ipa --iosPath bin -r . -x 7.3
       
-    - plugin_ios_sign --certID soda --password 123456 --codeSignIdentity 'iPhone Developer%3A+junchi he (22AYX4B947)' --provisioningProfile "2287a324-856c-4ccd-bb90-047baafbbe42" --ipaFile bin/ball.ipa
+    - plugin_ios_sign --certID soda --password 123456 --codeSignIdentity "iPhone Developer: junchi he (22AYX4B947)" --provisioningProfile "2287a324-856c-4ccd-bb90-047baafbbe42" --ipaFile bin/ball.ipa
       
     - plugin_fir --build 1.0 --bundleId com.tencent.ball --file bin/ball.ipa  --name ball --token "#{fir.token}" --type ios --version 1.0
