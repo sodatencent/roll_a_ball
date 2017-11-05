@@ -78,7 +78,7 @@ stages:
     #     -x, --xCodeVersion
     #        XCode 版本，如果不指定就7.3
     
-    - plugin_xcode -ioaName ball.ipa --iosPath bin -r . -x 7.3
+    - plugin_xcode -iosName ball.ipa --iosPath bin -r . -x 7.3
       
     - plugin_ios_sign --certID soda --password 123456 --codeSignIdentity "iPhone Developer%3A+junchi he (22AYX4B947)" --provisioningProfile "2287a324-856c-4ccd-bb90-047baafbbe42" --ipaFile bin/ball.ipa
       
