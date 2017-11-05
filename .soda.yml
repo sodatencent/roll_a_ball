@@ -17,5 +17,69 @@ stages:
     - ls
     - rm -rf ./bin/
     - plugin_unity3d_install -v 5.6.1f1 --username "#{unity.username}" --password "#{unity.password}"
-    - plugin_unity3d -p android -r . --apkPath bin --apkName roll_a_ball.apk
-    - plugin_fir --build 1.0 --bundleId com.tencent.ball --file bin/roll_a_ball.apk  --name roll_a_ball.apk --token "#{fir.token}" --type android --version 1.0
+    # Unity3D引擎游戏客户端工程构建 
+    
+    # Usage: <main class> [options]
+    #   Options:
+    #     --apkName
+    #        指定安卓APK包的输出名称
+    #        Default: output.apk
+    #     --apkPath
+    #        指定安卓APK包的输出路径，相对于源码仓库根目录的路径
+    #        Default: bin/android/
+    #     -d, --debug
+    #        指定是否采用Debug模式编译
+    #        Default: false
+    #     --enableBitCode
+    #        启用或禁用bitCode模式, 默认禁止
+    #        Default: false
+    #     -e, --executeMethod
+    #        指定构建脚本的静态入口函数，本插件无需编写C#构建脚本，不指定该参数将自动导入/Assets/Editor/SODABuild.cs脚本，否则使用工程代码中的静态入口函数方法
+    #     --keyAliasName
+    #        指定安卓平台下的Key别名名称
+    #     --keyAliasPass
+    #        指定安卓平台下的Key别名密码
+    #     --keyStoreName
+    #        指定安卓平台下的KeyStore文件，相对与源码仓库根目录的相对路径和文件名
+    #     --keyStorePass
+    #        指定安卓平台下KeyStore文件的密码
+    #     -p, --platforms
+    #        指定一个或多个构建包目标平台，多个参数使用","号分割
+    #        Default: [android, iphone]
+    #     -r, --rootDir
+    #        指定工程相对于源码仓库的相对路径
+    #     --xcodeProjectName
+    #        指定输出的XCode工程名称
+    #        Default: XCodeProject
+    
+    - plugin_unity3d -p iphone
+    # 调用XCode执行IOS工程构建 
+    
+    # Usage: <main class> [options]
+    #   Options:
+    #     -c, --configuration
+    #        XCode 工程配置信息
+    #     --enableBitCode
+    #        启用或禁用bitCode模式, 默认禁止
+    #        Default: false
+    #     --iosName
+    #        IOS IPA名, 默认是output.ipa
+    #        Default: output.ipa
+    #     --iosPath
+    #        IOS IPA所在的目录， 默认是bin/ios
+    #        Default: bin/ios
+    #     -p, --project
+    #        XCode 工程名称
+    #     -r, --rootDir
+    #        XCode 工程的根目录
+    #        Default: .
+    #     -s, --scheme
+    #        XCode 工程scheme
+    #     -x, --xCodeVersion
+    #        XCode 版本，如果不指定就7.3
+    
+    - plugin_xcode -ioaName ball.ipa --iosPath bin -r . -x 7.3
+      
+    - plugin_ios_sign --certID soda --password 123456 --codeSignIdentity "iPhone Developer%3A+junchi he (22AYX4B947)" --provisioningProfile "2287a324-856c-4ccd-bb90-047baafbbe42" --ipaFile bin/ball.ipa
+      
+    - plugin_fir --build 1.0 --bundleId com.tencent.ball --file bin/ball.ipa  --name ball --token "#{fir.token}" --type ios --version 1.0
