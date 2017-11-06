@@ -3,8 +3,6 @@ from: mac
 scm:
   increment: true
   checkout: true
-  
-vm: sodamac-vm-10-66-1-2
 
 envs:
   version: 3.0.1
