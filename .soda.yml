@@ -14,10 +14,6 @@ stages:
     - rm -rf ./bin/
     - plugin_unity3d_install -v 5.6.1f1 --username "#{unity.username}" --password "#{unity.password}"
     
-    - plugin_unity3d -p iphone
+    - plugin_unity3d -p android --apkPath bin/ --apkName ball.apk
     
-    - plugin_xcode --iosName ball.ipa --iosPath bin -r . -v 8.3.3
-      
-    - plugin_ios_sign --certID soda --password 123456 --codeSignIdentity "iPhone Developer: junchi he (22AYX4B947)" --provisioningProfile "2287a324-856c-4ccd-bb90-047baafbbe42" --ipaFile bin/ball.ipa
-      
-    - plugin_fir --build "#{build}" --bundleId com.tencent.ball --file bin/ball.ipa  --name ball --token "#{fir.token}" --type ios --version "#{version}"
+    - plugin_fir --build "#{build}" --bundleId com.tencent.ball --file bin/ball.apk  --name ball_android --token "#{fir.token}" --type android --version "#{version}"
