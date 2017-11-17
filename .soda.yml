@@ -20,4 +20,4 @@ stages:
       
     - plugin_ios_sign --certID soda --password 123456 --codeSignIdentity "iPhone Developer: junchi he (22AYX4B947)" --provisioningProfile "2287a324-856c-4ccd-bb90-047baafbbe42" --ipaFile bin/ball.ipa
       
-    - plugin_fir --build "#{build}" --bundleId com.tencent.ball --file bin/ball.ipa  --name ball --token "#{fir.token}" --type ios --version "#{version}"
+    - plugin_fir --build "#{build}" --isOpen false --bundleId com.tencent.ball --file bin/ball.ipa  --name ball --token "#{fir.token}" --type ios --version "#{version}"
